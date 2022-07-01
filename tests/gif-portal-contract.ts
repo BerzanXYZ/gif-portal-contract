@@ -4,13 +4,26 @@ try {
   (async () => {
     console.log("🚀 Starting test...")
   
-    anchor.setProvider(anchor.AnchorProvider.env())
+    const provider = anchor.AnchorProvider.env()
+    anchor.setProvider(provider)
+
     const program = anchor.workspace.GifPortalContract
-    const tx = await program.rpc.initialize()
+
+    const baseAccount = anchor.web3.Keypair.generate()
+
+    let tx = await program.rpc.initialize({
+      accounts: {
+        baseAccount: baseAccount.publicKey,
+        payer: provider.wallet.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      },
+      signers: [baseAccount]
+    })
   
     console.log("Your tx id:", tx)
     process.exit(0)
   })()
 } catch (error) {
-  console.error(error);
+  console.error(error)
+  process.exit(1)
 }

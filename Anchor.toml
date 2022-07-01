@@ -1,7 +1,7 @@
 [features]
 seeds = false
 [programs.devnet]
-gif_portal_contract = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+gif_portal_contract = "7fPRhd6Qty9yEYnMafku5EzoQRvj3PCqFMUpTbPne7WQ"
 
 [registry]
 url = "https://anchor.projectserum.com"

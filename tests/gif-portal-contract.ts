@@ -25,16 +25,20 @@ try {
     let account = await program.account.baseAccount.fetch(baseAccount.publicKey)
     console.log('👀 GIF Count:', account.totalGifs.toString())
 
-    let txAddGif = await program.rpc.addGif({
+    let txAddGif = await program.rpc.addGif("https://media.giphy.com/media/HJXsW9ZQxZkWY/giphy.gif", {
       accounts: {
         baseAccount: baseAccount.publicKey,
-      }
+        payer: provider.wallet.publicKey,
+      },
     })
 
     console.log('Add Gif Tx ID:', txAddGif)
 
     account = await program.account.baseAccount.fetch(baseAccount.publicKey)
     console.log('👀 GIF Count:', account.totalGifs.toString());
+
+    console.log('GIF List:', account.gifList)
+    
     
 
     process.exit(0)

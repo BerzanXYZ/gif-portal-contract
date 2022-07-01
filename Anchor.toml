@@ -11,4 +11,4 @@ cluster = "localnet"
 wallet = "/home/berzan/.config/solana/id.json"
 
 [scripts]
-test = "ts-node tests/myepicproject.ts"
+test = "ts-node tests/gif-portal-contract.ts"

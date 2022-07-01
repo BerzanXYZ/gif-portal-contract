@@ -20,7 +20,23 @@ try {
       signers: [baseAccount]
     })
   
-    console.log("Your tx id:", tx)
+    console.log("Init Tx ID:", tx)
+
+    let account = await program.account.baseAccount.fetch(baseAccount.publicKey)
+    console.log('👀 GIF Count:', account.totalGifs.toString())
+
+    let txAddGif = await program.rpc.addGif({
+      accounts: {
+        baseAccount: baseAccount.publicKey,
+      }
+    })
+
+    console.log('Add Gif Tx ID:', txAddGif)
+
+    account = await program.account.baseAccount.fetch(baseAccount.publicKey)
+    console.log('👀 GIF Count:', account.totalGifs.toString());
+    
+
     process.exit(0)
   })()
 } catch (error) {
